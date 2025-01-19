@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: run tests and build
+name: run linters
 
 on:
   pull_request:
@@ -17,5 +17,5 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: npm lint
-      - run: npm ts:lint
+      - run: npm run lint
+      - run: npm run ts:lint
