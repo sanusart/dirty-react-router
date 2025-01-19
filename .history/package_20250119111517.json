@@ -1,6 +1,6 @@
 {
   "name": "dirty-react-router",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "A lightweight, easy to use React router that helps manage simple site navigation.",
   "type": "module",
   "main": "dist/index.js",
@@ -17,8 +17,8 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
