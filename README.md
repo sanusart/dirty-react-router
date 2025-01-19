@@ -37,26 +37,24 @@ function NotFound() {
 }
 
 const routes = [
-    { path: "/", component: Home },
-    { path: "/about", component: About },
-    { path: "/users/:id", component: UserProfile },
-    { path: "*", component: NotFound },
+  { path: '/', component: Home },
+  { path: '/about', component: About },
+  { path: '/users/:id', component: UserProfile },
+  { path: '*', component: NotFound },
 ];
 
 function App() {
   return (
     <RouterProvider routes={[]}>
-      <header /> 
+      <header />
       <aside />
       <article>
         <Outlet />
       </article>
-      <footer /> 
+      <footer />
     </RouterProvider>
   );
 }
-
-
 ```
 
 ### Navigation
@@ -74,11 +72,9 @@ function Navigation() {
       {/* Using Link component */}
       <Link to="/">Home</Link>
       <Link to="/about">About</Link>
-      
+
       {/* Programmatic navigation */}
-      <button onClick={() => navigate('/users/123')}>
-        Go to User Profile
-      </button>
+      <button onClick={() => navigate('/users/123')}>Go to User Profile</button>
     </nav>
   );
 }
@@ -91,7 +87,7 @@ import { useParams } from 'dirty-react-router';
 
 function UserProfile() {
   const { params } = useRouter();
-  
+
   return (
     <div>
       <h1>User Profile</h1>
@@ -109,8 +105,10 @@ A component that provides routing functionality to its children.
 
 ### Props:
 
-- children: React nodes to be rendered within the provider.
-- routes: An array of RouteType objects representing the available routes.
+| Prop       | Type              | Required | Description                                                     |
+| ---------- | ----------------- | -------- | --------------------------------------------------------------- |
+| `children` | `React.ReactNode` | Yes      | React nodes to be rendered within the provider                  |
+| `routes`   | `RouteType[]`     | Yes      | An array of RouteType objects representing the available routes |
 
 ### Functionality:
 
@@ -125,10 +123,12 @@ A component that provides navigation functionality within dirty-react-router.
 
 ### Props:
 
-- to (string): The destination URL or path.
-- children (React.ReactNode): The content to be rendered inside the link.
-- className (string, optional): CSS class names to be applied to the link.
-- onClickCb (function, optional): A callback function to be executed when the link is clicked.
+| Prop        | Type              | Required | Description                                                 |
+| ----------- | ----------------- | -------- | ----------------------------------------------------------- |
+| `to`        | `string`          | Yes      | The destination URL or path                                 |
+| `children`  | `React.ReactNode` | Yes      | The content to be rendered inside the link                  |
+| `className` | `string`          | No       | CSS class names to be applied to the link                   |
+| `onClickCb` | `function`        | No       | A callback function to be executed when the link is clicked |
 
 ### Usage Example
 
@@ -157,7 +157,8 @@ function Navigation() {
 - Uses matchRoute to find the route that matches the current path.
 
 If no matching route is found:
-- Checks for a catch-all route (path: '*').
+
+- Checks for a catch-all route (path: '\*').
 - If a catch-all route exists, renders its component.
 - If no catch-all route exists, renders a default 404 page.
 - If a matching route is found, renders its component, passing params and any additional props.
@@ -166,9 +167,9 @@ If no matching route is found:
 
 Throws an error with a console message if routes are not defined or not passed to the RouterProvider.
 
-### 404 Handling 
-Renders a basic 404 page if no matching route or catch-all route is found.
+### 404 Handling
 
+Renders a basic 404 page if no matching route or catch-all route is found.
 
 ### Props
 
@@ -199,8 +200,9 @@ function App() {
 ```
 
 > someExtraProp will be available to access on the rendered component for example:
+>
 > ```typescript jsx
-> export const About = ({ someExtraProp }) => <div />; 
+> export const About = ({ someExtraProp }) => <div />;
 > ```
 
 ## useRouter Hook
@@ -220,7 +222,7 @@ Returns an object containing:
 function Navigation() {
   const { navigate, path } = useRouter();
   const activeRoute = path === document.location.pathname;
-    
+
   return (
     <nav>
       <button active={activeRoute} onClick={() => navigate('/')}>Home</button>
@@ -229,4 +231,5 @@ function Navigation() {
   );
 }
 ```
+
 > Must be used within a component that is a child of RouterProvider.
