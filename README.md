@@ -121,7 +121,9 @@ A component that provides routing functionality to its children.
 
 ## Link Component
 
-The Link component accepts the following props:
+A component that provides navigation functionality within dirty-react-router.
+
+### Props:
 
 - to (string): The destination URL or path.
 - children (React.ReactNode): The content to be rendered inside the link.
