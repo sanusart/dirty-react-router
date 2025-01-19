@@ -5,6 +5,8 @@ A lightweight, easy to use, 0 dependency React router that helps manage simple s
 ![size](https://badgen.net/bundlephobia/dependency-count/dirty-react-router) 
 ![size](https://badgen.net/bundlephobia/minzip/dirty-react-router "Size")
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitejs-vite-uyprfgno?file=src%2FApp.tsx)
+
 ## Installation
 
 ```bash
