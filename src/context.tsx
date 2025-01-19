@@ -1,25 +1,7 @@
-import React, {
-  ReactNode,
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-} from 'react';
+import * as React from 'react';
+import type { RouterContextType, RouterProviderType, RouteType } from '../types';
 
-export type RouteType = {
-  path: string;
-  component: (props: { params?: Record<string, string> }) => ReactNode;
-};
-
-export interface RouterContextType {
-  path: string;
-  params: Record<string, string>;
-  navigate: (to: string) => void;
-  routes: RouteType[];
-}
-
-const RouterContext = createContext<RouterContextType | undefined>(undefined);
+const RouterContext = React.createContext<RouterContextType | undefined>(undefined);
 
 export const matchRoute = (
   routes: RouteType[],
@@ -48,16 +30,11 @@ export const matchRoute = (
   return { route: null, params: {} };
 };
 
-export interface RouterProviderType {
-  children: ReactNode;
-  routes: RouteType[];
-}
+export const RouterProvider = ({ children, routes }: RouterProviderType) => {
+  const [path, setPath] = React.useState(window.location.pathname);
+  const [params, setParams] = React.useState<Record<string, string>>({});
 
-export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes }) => {
-  const [path, setPath] = useState(window.location.pathname);
-  const [params, setParams] = useState<Record<string, string>>({});
-
-  const updateRoute = useCallback(
+  const updateRoute = React.useCallback(
     (newPath: string) => {
       const { params: newParams } = matchRoute(routes, newPath);
       setPath(newPath);
@@ -66,7 +43,7 @@ export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes 
     [routes]
   );
 
-  const navigate = useCallback(
+  const navigate = React.useCallback(
     (to: string) => {
       window.history.pushState(null, '', to);
       updateRoute(to);
@@ -74,11 +51,11 @@ export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes 
     [updateRoute]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     updateRoute(path);
   }, [path, updateRoute]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.documentElement.scrollTo({
       top: 0,
       left: 0,
@@ -86,7 +63,7 @@ export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes 
     });
   }, [path]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handlePopState = () => {
       updateRoute(window.location.pathname);
     };
@@ -103,7 +80,7 @@ export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes 
 };
 
 export const useRouter = () => {
-  const context = useContext(RouterContext);
+  const context = React.useContext(RouterContext);
   if (context === undefined) {
     console.log(
       ' ❗ %c Error ',

@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { useRouter, matchRoute } from './context';
+import type { OutletType } from '../types';
 
-interface RouteContentProps {
-  [key: string]: unknown;
-}
-
-export const Outlet = ({ ...rest }: RouteContentProps) => {
+export const Outlet = ({ ...rest }: OutletType) => {
   const { path, params, routes } = useRouter();
   if (!routes) {
-    throw new Error('routes are not defined ot not provided to Provider');
+    console.log(
+      ' ❗ %c Error ',
+      'background: tomato; border: 1px solid tomato; border-radius: 3px; padding: 2px 0px 0px 0px; color: #fff',
+      '"routes" are not defined or not passed to the <RouterProvider/>'
+    );
+    throw new Error('"routes" are not defined or not passed to the <RouterProvider/>');
   }
 
   const { route } = matchRoute(routes, path);
