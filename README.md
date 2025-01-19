@@ -233,3 +233,7 @@ function Navigation() {
 ```
 
 > Must be used within a component that is a child of RouterProvider.
+
+License: MIT 
+
+:)
