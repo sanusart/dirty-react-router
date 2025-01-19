@@ -12,7 +12,7 @@ export type RouteType = {
   component: (props: { params?: Record<string, string> }) => ReactNode;
 };
 
-interface RouterContextType {
+export interface RouterContextType {
   path: string;
   params: Record<string, string>;
   navigate: (to: string) => void;
@@ -48,12 +48,12 @@ export const matchRoute = (
   return { route: null, params: {} };
 };
 
-interface RouterProviderProps {
+export interface RouterProviderType {
   children: ReactNode;
   routes: RouteType[];
 }
 
-export const RouterProvider: React.FC<RouterProviderProps> = ({ children, routes }) => {
+export const RouterProvider: React.FC<RouterProviderType> = ({ children, routes }) => {
   const [path, setPath] = useState(window.location.pathname);
   const [params, setParams] = useState<Record<string, string>>({});
 
@@ -105,7 +105,12 @@ export const RouterProvider: React.FC<RouterProviderProps> = ({ children, routes
 export const useRouter = () => {
   const context = useContext(RouterContext);
   if (context === undefined) {
-    throw new Error('useRouter must be used within a RouterProvider');
+    console.log(
+      ' ❗ %c Error ',
+      'background: tomato; border: 1px solid tomato; border-radius: 3px; padding: 2px 0px 0px 0px; color: #fff',
+      'useRouter() can only be used within <RouterProvider/> children'
+    );
+    throw new Error('useRouter() can only be used within <RouterProvider/> children');
   }
   return context;
 };
