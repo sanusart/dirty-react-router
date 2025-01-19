@@ -1,6 +1,9 @@
 # Dirty react router
 
-A lightweight, easy to use React router that helps manage simple site navigation.
+A lightweight, easy to use, 0 dependency React router that helps manage simple site navigation.
+
+![size](https://badgen.net/bundlephobia/dependency-count/dirty-react-router) 
+![size](https://badgen.net/bundlephobia/minzip/dirty-react-router "Size")
 
 ## Installation
 
