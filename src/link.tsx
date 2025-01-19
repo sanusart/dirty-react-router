@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useRouter } from './context';
-import { LinkType } from '../types';
+import { LinkType } from './types';
 
 export const Link = ({ to, children, className, onClickCb }: LinkType) => {
   const { navigate } = useRouter();
