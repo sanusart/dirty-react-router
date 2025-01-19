@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRouter, matchRoute } from './context';
-import type { OutletType } from '../types';
+import type { OutletType } from './types';
 
 export const Outlet = ({ ...rest }: OutletType) => {
   const { path, params, routes } = useRouter();
